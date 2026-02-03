@@ -1,0 +1,72 @@
+# SMT Gold/Silver Timing Tool Config
+instruments:
+  - GLD
+  - SLV
+
+timezone:
+  cutoff: "NYC 17:00"
+
+data_provider:
+  source: "yahoo"
+  start: null
+  end: null
+
+risk:
+  risk_per_trade: 0.005
+  atr_window: 14
+  stop_atr_mult: 2.0
+
+trend:
+  ma_short: 20
+  ma_mid: 50
+  ma_long: 200
+  slope_lookback: 10
+  slope_min: 0.001
+  sep_min: 0.005
+
+costs:
+  cost_bps: 10.0
+  slippage_bps: 5.0
+
+report:
+  include_charts: true
+  output_dir: "reports"
+  output_html: true
+  chart_lookback_days: 260
+  chart_lookback_weeks: 260
+  chart_lookback_months: 180
+  chart_ma_daily: [20, 50, 200]
+  chart_ma_weekly: [10, 20, 40]
+  chart_ma_monthly: [6, 12, 24]
+  cycle_marker_limit: 5
+  cycle_conf_med: 0.6
+  cycle_conf_high: 0.8
+  cycle_conf_colors:
+    high: "#2ca02c"
+    med: "#ff7f0e"
+    low: "#d62728"
+  cycle_type_colors:
+    DCL: "#1f77b4"
+    HCL: "#f1c40f"
+    ICL: "#2ca02c"
+
+signals:
+  output_dir: "reports"
+  output_csv: true
+
+cycles:
+  enable_ocr: true
+  output_dir: "data/cycles"
+  min_confidence: 0.2
+  enable_detection: true
+  specs_path: "data/cycle_specs.json"
+  manual_points_path: "data/cycles/manual_cycle_points.csv"
+  cycle_reversal_lookback: 5
+  cycle_reversal_threshold: 0.66
+  cycle_size_bonus: 0.5
+  cycle_size_max_mult: 1.5
+  cycle_size_penalty: 0.25
+
+rule_lab:
+  enable: true
+  max_combo: 3
