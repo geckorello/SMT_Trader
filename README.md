@@ -4,6 +4,7 @@ Rules-based GOLD/SILVER timing system driven by SmartMoneyTrackerPremium (SMT) e
 This project produces daily BUY/SELL/HOLD signals, walk-forward backtests, and human-readable reports.
 
 [![CI](https://github.com/geckorello/SMT_Trader/actions/workflows/ci.yml/badge.svg)](https://github.com/geckorello/SMT_Trader/actions/workflows/ci.yml)
+![Rule Lab](https://img.shields.io/badge/Rule%20Lab-enabled-brightgreen)
 
 ## What This Does
 - Ingests public SMT pages and local PDF/HTML/TXT exports.
@@ -42,6 +43,14 @@ Outputs:
 - SMT content is only ingested from local exports or public pages (no auth bypass).
 - Generated outputs are date-stamped in `reports/`.
 - To fully reproduce historical outputs, snapshot the input exports and data.
+
+## Architecture (High Level)
+- `scripts/`: ingestion + rule extraction + OCR helpers
+- `rules_engine.py`: SMT proxy rules + cycle-aware signals
+- `cycle_engine/`: DCL/HCL/ICL detection + PDF spec extraction
+- `backtest.py`: walk-forward backtests + metrics
+- `report.py`: daily report generation (MD/HTML)
+- `rule_lab.py`: rule-combo comparisons + signal charts
 
 ## Cycle Detection (Module)
 This module adds production-ready cycle detection (DCL/HCL/ICL) and PDF-based calibration from SMT exports.
@@ -103,3 +112,9 @@ brew install tesseract
 
 ## Runbook
 See `RUNBOOK.md` for weekly ingestion, daily signal generation, and deployment notes.
+
+## Quick Push
+If you want a one-command push:
+```bash
+./push.sh "Your commit message"
+```
