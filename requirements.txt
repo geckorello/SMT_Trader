@@ -1,0 +1,9 @@
+pandas
+numpy
+pyyaml
+yfinance
+matplotlib
+requests
+beautifulsoup4
+pdfplumber
+PyPDF2
